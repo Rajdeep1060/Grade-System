@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+
+ 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<script src="https://kit.fontawesome.com/a9536c156e.js" crossorigin="anonymous"></script>
+<title>Document</title>
+    <style>
+        *{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+/*for heading*/
+.head_content{
+
+    text-decoration:underline;
+    font-size: 25px;
+    font-weight: bold;
+    margin-top:20px;
+    text-align:center;
+}
+
+
+.parent_container{
+    border:3px solid black;
+
+}
+
+.form_container{
+    margin-top:20px;
+  
+}
+
+.dec{
+    width:80px;
+}
+
+
+body {
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+ 
+}
+h2{
+    
+    margin-left: 40%;
+}
+#main{
+    background-color: black;
+    color:wheat;
+}
+
+    </style>
+</head>
+<body>
+    <div id="main">
+    <h2>Score Card</h2>
+  <div class="form_container container">
+<form action="/result" method="post" name="myform">
+<br><br>
+    <div class="row">
+        <div class="col-lg-2 col-sm-2 col-4 fw-bold">Student ID
+        </div>
+        <div class="col-8 col-lg-3 col-sm-4">
+ <input type="number" name="s_id" id="s_id" required>
+        </div>
+       <div class="col-lg-7 col-sm-6 fw-bold" id="msg1">
+    </div>
+       </div>
+        <br><br>
+        <div class="row">
+            <div class="col-sm-2 col-4 col-lg-2 fw-bold">FIRST NAME
+            </div>
+            <div class="col-8 col-lg-3 col-sm-4 ">
+     <input type="text" name="fname" id="fname">
+            </div>
+            <div class="col-lg-7 col-sm-6 fw-bold" id="msg2">(enter Name Starting with Capital Letter)
+            </div>
+           </div>
+
+    <br><br>
+<br><br>
+<div class="row">
+    <div class="col-lg-2 col-sm-2 fw-bold"fw-bold>ADDRESS
+    </div>
+    <div class="col-lg-10 ">
+<textarea name="tarea" id="tarea" cols="30" rows="5" id="address" required></textarea>
+    </div>
+   
+ </div>
+
+<br><br>
+            <div class="row">
+                <div class="col-lg-1 col-sm-2 fw-bold"fw-bold>Subjects
+                </div>
+                <div class="col-lg-11 ">
+                    <br>
+     <label for="">Maths:- </label> <input type="number"  name="maths" id="maths" class="dec" minlength="1" maxlength="3" required><span id="m1"></span><br><br>
+     <label>Web Dev</label> <input type="number" name="phy" id="phy" class="dec" minlength="1" maxlength="3"><span id="m2" required></span><br><br>
+      <label for="">Algorithms</label><input type="number"  name="chem" id="chem" class="dec" minlength="1" maxlength="3" required><span id="m3"></span><br><br>
+    <label for="">Business</label>  <input type="number" name="bio" id="bio" class="dec" minlength="1" maxlength="3" required><span id="m4"></span><br><br>
+    <label for="">Aptitude</label>  <input type="number" name="eng" id="eng" class="dec" minlength="1" maxlength="3" required><span id="m5"></span>
+                </div>
+             </div>
+<br><br>
+             <div class=" d-flex justify-content-center">
+                <div class="fw-bold"fw-bold>
+                   
+                    <button type="submit" class="btn btn-warning" id="submit">Submit</button>               </div>
+               
+             </div>
+
+</form>
+  </div>
+
+    </div>
+</div>
+
+</body>
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script>
+console.log("started");
+
+
+
+var validStudentId=false;
+var validFname=false;
+var validAddress=false;
+var validMath=false;
+var validPhy=false;
+var validChem=false;
+var validBio=false;
+var validEng=false;
+
+
+
+/*for student id*/
+var s_Id=document.getElementById("s_id");
+var msg=document.getElementById("msg1");
+var reg=/^[0-9]{10}$/;
+s_Id.addEventListener("blur",()=>{
+    if((s_Id.value.length==10) && reg.test(s_Id.value)){
+        validStudentId=true;
+        console.log("Id matched");
+       // msg.innerHTML="<i style='color:green' class='fa-solid fa-check fa-2x'></i>";
+
+    }
+    
+
+    else {
+        // msg.style.color="red";
+        // msg.innerText="Id is not correct";
+    }
+
+
+})
+
+
+
+/*for first name*/
+var fname=document.getElementById("fname");
+var msg2=document.getElementById("msg2");
+var reg2=/^[A-Z]([A-Za-z\s]){3,14}$/;
+fname.addEventListener("blur",()=>{
+    if(fname.value.length>=4 && reg2.test(fname.value)){
+        validFname=true;
+       // msg2.innerHTML="<i style='color:green' class='fa-solid fa-check fa-2x'></i>";
+        console.log("Fname matched");
+
+    }
+    
+
+    else {
+        // msg2.style.color="red";
+        // msg2.innerText="Name is not correct";
+    }
+
+
+})
+
+
+
+
+/*for address*/
+
+var tarea=document.getElementById("tarea");
+var msg3=document.getElementById("msg3");
+var d=tarea.value;
+var reg3= /^([A-Za-z0-9\s\-_])+/;
+tarea.addEventListener("blur",()=>{
+    if(reg3.test(tarea.value)){
+        validAddress=true;
+        console.log("Address correct");
+       return;
+
+    }
+    
+
+    if(d==""){
+    alert("Please Enter your details here");
+    validAddress=false;
+    return;
+    }
+
+
+})
+
+/* Subjects */
+
+var math=document.getElementById("maths");
+var m1=document.getElementById("m1");
+var reg4=/^[1-9][0-9]$/;
+var reg5=/^[0-9]$/;
+var reg6=/^[1-9][0-9][0-9]$/;
+math.addEventListener("blur",()=>{
+    if((reg4.test(math.value)) || (reg5.test(math.value)) || (reg6.test(math.value))){
+        validMath=true;
+//m1.innerHTML="<i style='color:green' class='fa-solid fa-check '></i>";
+    }
+    else {
+        // m1.innerHTML=" <i   style='color:red' class='fa-solid fa-xmark'></i>";
+       
+    }
+})
+
+var phy=document.getElementById("phy");
+var m2=document.getElementById("m2");
+phy.addEventListener("blur",()=>{
+    if(reg4.test(phy.value) || reg5.test(phy.value) || (reg6.test(phy.value))){
+        validPhy=true;
+//m2.innerHTML="<i style='color:green' class='fa-solid fa-check '></i>";
+    }
+    else {
+        // m2.innerHTML=" <i   style='color:red' class='fa-solid fa-xmark'></i>";
+       
+    }
+})
+
+
+var chem=document.getElementById("chem");
+var m3=document.getElementById("m3");
+chem.addEventListener("blur",()=>{
+    if(reg4.test(chem.value) || reg5.test(chem.value) || (reg6.test(chem.value))){
+        validChem=true;
+//m3.innerHTML="<i style='color:green' class='fa-solid fa-check '></i>";
+    }
+    else {
+        // m3.innerHTML=" <i   style='color:red' class='fa-solid fa-xmark'></i>";
+       
+    }
+})
+
+var bio=document.getElementById("bio");
+var m4=document.getElementById("m4");
+bio.addEventListener("blur",()=>{
+    if(reg4.test(bio.value) || reg5.test(bio.value) || (reg6.test(bio.value))){
+        validBio=true;
+//m4.innerHTML="<i style='color:green' class='fa-solid fa-check '></i>";
+    }
+    else {
+        // m4.innerHTML=" <i   style='color:red' class='fa-solid fa-xmark'></i>";
+       
+    }
+})
+
+var eng=document.getElementById("eng");
+var m5=document.getElementById("m5");
+eng.addEventListener("blur",()=>{
+    if(reg4.test(eng.value) || reg5.test(eng.value) || (reg6.test(eng.value))){
+        validEng=true;
+//m5.innerHTML="<i style='color:green' class='fa-solid fa-check '></i>";
+    }
+    else {
+        // m5.innerHTML=" <i style='color:red' class='fa-solid fa-xmark'></i>";
+       
+    }
+})
+
+
+var submit=document.getElementById("submit");
+submit.addEventListener("click",(e)=>{
+    if(validStudentId && validFname && validAddress && validMath && validPhy && validChem && validBio && validEng){
+        alert("Data Saved");
+        console.log("Valid Data");
+    }
+    else {
+        alert("Please Fill the data");
+        e.preventDefault();
+        return;
+    }
+})
+
+
+
+
+
+ 
+
+
+</script>
+</html>
+
+
